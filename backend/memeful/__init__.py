@@ -20,9 +20,9 @@ socketio = SocketIO(app, async_mode=async_mode)
 thread = None
 
 app.config["GIT_REVISION"] = subprocess.check_output(['git',
-ಠ_ಠ                                                   'rev-parse',
-ಠ_ಠ                                                   '--short',
-ಠ_ಠ                                                   'HEAD']).decode('utf-8').rstrip()
+                                                      'rev-parse',
+                                                      '--short',
+                                                      'HEAD']).decode('utf-8').rstrip()
 
 def background_thread():
     """Example of how to send server generated events to clients."""
