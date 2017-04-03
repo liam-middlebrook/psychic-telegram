@@ -1,7 +1,7 @@
 from flask import Flask, render_template, session, request
 from flask_socketio import SocketIO, emit, join_room, leave_room, \
     close_room, rooms, disconnect
-
+import os
 import subprocess
 
 # Set this variable to "threading", "eventlet" or "gevent" to test the
