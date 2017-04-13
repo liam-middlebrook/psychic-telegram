@@ -11,7 +11,7 @@ if os.path.exists(os.path.join(os.getcwd(), "config.py")):
 else:
     app.config.from_pyfile(os.path.join(os.getcwd(), "config.env.py"))
 
-socketio = SocketIO(app, async_mode=async_mode)
+socketio = SocketIO(app, async_mode=None)
 
 @app.route('/')
 def index():
