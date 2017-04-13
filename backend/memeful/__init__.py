@@ -4,6 +4,7 @@ from flask_socketio import SocketIO, emit, join_room, leave_room, \
 import os
 import subprocess
 import sys
+import uuid
 
 # redirect
 sys.stdout = sys.stderr
@@ -23,9 +24,10 @@ def index():
 
 @socketio.on('SYN', namespace='/api')
 def syn(message):
-    print(message)
-    print(session.items())
-    emit('room_assignment', {'room_id': "lfanecoUAX"})
+    if message['client_type'] == "RC":
+        session['room_id'] = session['uuid'][10:]
+        join_room(session['room_id'])
+        emit('room_assignment', {'room_id': session['uuid'][8:]})
 
 @socketio.on('join', namespace='/api')
 def join(message):
@@ -77,6 +79,7 @@ def ping_pong():
 
 @socketio.on('connect', namespace='/api')
 def test_connect():
+    session['uuid'] = uuid.uuid4()
     emit('my_response', {'data': 'Connected', 'count': 0})
 
 
