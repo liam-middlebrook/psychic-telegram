@@ -79,7 +79,7 @@ def ping_pong():
 
 @socketio.on('connect', namespace='/api')
 def test_connect():
-    session['uuid'] = uuid.uuid4()
+    session['uuid'] = str(uuid.uuid4())
     emit('my_response', {'data': 'Connected', 'count': 0})
 
 
