@@ -3,6 +3,10 @@ from flask_socketio import SocketIO, emit, join_room, leave_room, \
     close_room, rooms, disconnect
 import os
 import subprocess
+import sys
+
+# redirect
+sys.stdout = sys.stderr
 
 app = Flask(__name__)
 
