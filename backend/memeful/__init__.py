@@ -25,7 +25,7 @@ def index():
 @socketio.on('SYN', namespace='/api')
 def syn(message):
     if message['client_type'] == "RC":
-        session['room_id'] = session['uuid'][10:]
+        session['room_id'] = session['uuid'][:10]
         join_room(session['room_id'])
         emit('room_assignment', {'room_id': session['uuid'][8:]})
 
