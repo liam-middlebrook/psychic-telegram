@@ -21,6 +21,7 @@ def index():
 def syn(message):
     print(message)
     print(session)
+    emit('room_assignment', {'room_id': "lfanecoUAX"})
 
 @socketio.on('join', namespace='/api')
 def join(message):
