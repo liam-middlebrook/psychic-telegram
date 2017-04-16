@@ -31,7 +31,7 @@ def syn(message):
 
 @socketio.on('JOIN_ROOM', namespace='/api')
 def join(message):
-    if message["room"] in rooms['/api']:
+    if message["room"] in rooms():
         emit('JOIN_ROOM', {"status": "ok", "name": message['name']})
     else:
         emit('JOIN_ROOM', {"status": "no such room", "name": message['name']})
