@@ -29,13 +29,13 @@ def syn(message):
         join_room(session['room_id'])
         emit('room_assignment', {'room_id': session['uuid'][0:8]})
 
-@socketio.on('join', namespace='/api')
+@socketio.on('JOIN_ROOM', namespace='/api')
 def join(message):
-    join_room(message['room'])
-    session['receive_count'] = session.get('receive_count', 0) + 1
-    emit('my_response',
-         {'data': 'In rooms: ' + ', '.join(rooms()),
-          'count': session['receive_count']})
+    if message["join_room"] in rooms['/api']:
+        emit('JOIN_ROOM', {"status": "ok"})
+    else:
+        emit('JOIN_ROOM', {"status": "no such room"})
+    join_room(message['join_room'])
 
 
 @socketio.on('leave', namespace='/api')
